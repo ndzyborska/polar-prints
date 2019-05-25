@@ -3,9 +3,9 @@ const jwt = require('jsonwebtoken')
 const config = require('../config/config')
 
 function jwtSignUser (user) {
-  const ONE_WEEK = 60 * 60 * 24 * 7
+  const weekExpiration = 60 * 60 * 24 * 7
   return jwt.sign(user, config.authentication.jwtSecret, {
-    expiresIn: ONE_WEEK
+    expiresIn: weekExpiration
   })
 }
 
@@ -20,7 +20,7 @@ module.exports = {
           })
         }    catch (err) {
           res.status(400).send({
-            error: 'This email account is already in use'
+            error: 'There is already an account registered with this email'
           })
         }
     },
@@ -34,7 +34,7 @@ module.exports = {
         })
         if (!user) {
           res.status(403).send({
-            error: 'The login information was incorrect'
+            error: 'Incorrect login information'
           })
         }
 
@@ -43,7 +43,7 @@ module.exports = {
 
         if (!isPasswordValid) {
           return res.status(403).send({
-            error: 'The login information was incorrect'
+            error: 'Incorrect login information'
           })
         }
       
@@ -54,7 +54,7 @@ module.exports = {
         })
       } catch (err) {
          res.status(500).send({
-          error: 'An error has occured'
+          error: 'There is an error with login'
          })
         }
     }

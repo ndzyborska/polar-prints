@@ -1,35 +1,34 @@
-const Joi = require ('joi')
+const Joi = require('joi')
 
 module.exports = {
-    register (req, res, next) {
+    register(req, res, next) {
         const schema = {
-            email: Joi.string().email(),
+            email: Joi.string().email({ minDomainAtoms: 2 }),
             password: Joi.string().regex(
-                new RegExp('^[a-zA-Z0-9]{8,32}$')
+                new RegExp('^[a-zA-Z0-9]{6,24}$')
             )
         }
-
-        const {error, value} = Joi.validate(req.body, schema)
-
+        const {error} = Joi.validate(req.body, schema)
         if (error) {
             switch (error.details[0].context.key) {
-                case 'email': 
-                    res.status(400).send({
-                        error: 'You must provide a valid email address'
-                    })
+                case 'email':
+                res.status(400).send({
+                    error: 'invalid email address'
+                })
                 break
                 case 'password':
-                    res.status(400).send({
-                        error: `The password is not valid:
-                          <br> 
-                          1. Must contain only characters and numbers
-                          <br>
-                          2. Must be between 8 and 32 characters`
-                    })
+                  res.status(400).send({
+                      error: `Password entered does not follow the rules:
+                      <br>
+                      1. The password must be a combination of letters and numbers
+                      <br>
+                      2.The length of the password must be between 6 -24 characters
+                      `
+                  })
                 break
-                default: res.status(400).send({
-                    error: 'Invalid register information'
-
+                default:
+                res.status(400).send({
+                    error: 'Something is wrong with the registration information provided'
                 })
             }
         } else {

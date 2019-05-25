@@ -1,20 +1,19 @@
 module.exports = {
     "env": {
+        "node": true,
         "browser": true,
-        "commonjs": true,
         "es6": true
     },
-    "extends": "plugin:vue/essential",
+    "extends": "eslint:recommended",
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
     "parserOptions": {
-        "ecmaVersion": 2018
+        "ecmaVersion": 2018,
+        "sourceType": "module"
     },
-    "plugins": [
-        "vue"
-    ],
     "rules": {
+        "no-console": 0
     }
 };

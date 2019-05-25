@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "./node_modules/nodemon/bin/nodemon.js src/app.js --exec 'npm run lint && node'",
-    "lint": "eslint \"**/*.js\""
+    "lint": "eslint \"**/*.js\"",
+    "seed": "node ./seed"
   },
   "keywords": [],
   "author": "",
@@ -22,8 +23,7 @@
     "node": "^11.10.0",
     "nodemon": "^1.19.0",
     "sequelize": "^5.8.6",
-    "sqlite": "^3.0.3",
-    "sqlite3": "^4.0.6",
+    "sqlite3": "^4.0.8",
     "uniq": "^1.0.1"
   },
   "devDependencies": {

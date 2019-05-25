@@ -6,11 +6,24 @@ const Op = Sequelize.Op
 module.exports = {
     async items (req, res) {   
       try {
-const foods = await Food.findAll({
+          let food = null;
+          if(req.query.search) {
+              food = await Food.findAll({
+                  where: {
+                    name: {
+                    [Op.like]: `%${req.query.search}%`
+                      }  
+                  }
+              })
+          }
+
+    else {food = await Food.findAll({
     limit: 10
 })
-res.send(foods)
+    }
+res.send(food)
       } catch (err) {
+          console.log(err)
          res.status(500).send({
           error: 'Error retriving foods'
          })

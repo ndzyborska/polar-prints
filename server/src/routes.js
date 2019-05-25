@@ -10,14 +10,13 @@ module.exports = (app) => {
     app.post('/login',
     AuthenticationController.login)
 
-    app.get('/food',
-    FoodController.items)
-
-
-    app.get('/food/:name',
+    app.search('/food/:name',
     FoodController.search)
 
     app.post('/food',
     FoodController.post)
+
+    app.post('/search-food',
+    FoodController.food)
 }
 // calls authenitication to login, which grabs user name & password using body.

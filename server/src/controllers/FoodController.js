@@ -4,24 +4,16 @@ const Op = Sequelize.Op
 
 
 module.exports = {
-    async items (req, res) {   
+    async food (req, res) {   
       try {
-          let food = null;
-          if(req.query.search) {
-              food = await Food.findAll({
+              const food = await Food.findAll({
                   where: {
                     name: {
-                    [Op.like]: `%${req.query.search}%`
+                    [Op.like]: `%${req.body.name}%`
                       }  
                   }
               })
-          }
-
-    else {food = await Food.findAll({
-    limit: 10
-})
-    }
-res.send(food)
+        res.send(food)
       } catch (err) {
           console.log(err)
          res.status(500).send({
@@ -29,48 +21,50 @@ res.send(food)
          })
         }
     },
-
-    async search (req, res) {
-        try {
-            let foods = null;
-            foods = await Food.findAll({
-                where: {
-                name: {
-                    [Op.is]: req.params.name
+  
+      async search (req, res) {
+          try {
+              let foods = null;
+              foods = await Food.findAll({
+                  where: {
+                  name: {
+                      [Op.is]: req.params.name
+                    }
                   }
-                }
-              })
-        res.send(foods)     
-        } catch (err) {
-            console.log(req.params.name)
-            console.log(err)
-            res.status(500).send({
-                error: 'Error retriving foods'
-               })
-    }
-   },
-
-
-    async show (req, res) {
-        try {
-          const food = await Food.findByPk(req.params.foodId)
-          res.send(food)
-        } catch (err) {
-            console.log(err)
-          res.status(500).send({
-            error: 'Couldnt get Food'
-          })
-        }
-      },
-    
-    async post (req, res) {   
-        try {
-  const food = await Food.create(req.body)
-  res.send(food)
-        } catch (err) {
-           res.status(500).send({
-            error: 'Error creating foods'
-           })
-          }
+                })
+          res.send(foods)     
+          } catch (err) {
+              console.log(req.params.name)
+              console.log(err)
+              res.status(500).send({
+                  error: 'Error retriving foods'
+                 })
       }
-}
+     },
+  
+  
+      async show (req, res) {
+          try {
+            const food = await Food.findByPk(req.params.foodId)
+            res.send(food)
+          } catch (err) {
+              console.log(err)
+            res.status(500).send({
+              error: 'Couldnt get Food'
+            })
+          }
+        },
+      
+      async post (req, res) {   
+          try {
+    const food = await Food.create(req.body)
+    res.send(food)
+          } catch (err) {
+            console.log(err)
+             res.status(500).send({
+              error: 'Error creating foods'
+             })
+            }
+        }
+      }
+     

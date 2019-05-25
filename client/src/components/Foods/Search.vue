@@ -23,11 +23,12 @@
 </template>
 
 <script>
+import FoodService from '@/services/FoodService'
 export default {
   data () {
     return {
       loading: false,
-      items: [],
+      items: null,
       search: null,
       select: null,
       states: [
@@ -57,11 +58,16 @@ export default {
     querySelections (v) {
       this.loading = true
       setTimeout(() => {
-        this.items = this.states.filter(e => {
-          return (e || '').toLowerCase().indexOf((v || '').toLowerCase()) > -1
-        })
+        this.food(v)
         this.loading = false
       }, 500)
+    },
+    async food (val) {
+      try {
+        this.items = await FoodService.foodNames(val)
+      } catch (error) {
+        this.error = error.response.data.error
+      }
     }
   }
 }

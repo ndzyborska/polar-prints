@@ -1,10 +1,10 @@
 <template>
- <v-toolbar fixed class="cyan" dark>
+ <v-toolbar fixed class="light-blue lighten-5" dark>
      <v-toolbar-title class="mr-4">
          <v-btn flat dark
          class="home"
          @click="navigateTo({name: 'root'})">
-         TabTracker
+         Polar Prints
          </v-btn>
      </v-toolbar-title>
 
@@ -65,6 +65,7 @@ export default {
 <style scoped>
 .home {
     cursor: pointer; /* make a hand when hovering over a thing that is of class home */
+    font-size: 20px;
 }
 
 </style>

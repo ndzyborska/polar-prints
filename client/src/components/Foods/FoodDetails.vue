@@ -1,5 +1,9 @@
 <template>
+<<<<<<< HEAD
   <p> {{food.name}} </p>
+=======
+  <p> {{food.carbon}} </p>
+>>>>>>> 44502ca034245a4b60c7a9c4d7748e3a96cd3b7b
 </template>
 
 <script>

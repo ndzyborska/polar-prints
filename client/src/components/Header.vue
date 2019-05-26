@@ -1,11 +1,16 @@
 <template>
  <v-toolbar fixed class="light-blue lighten-5" dark>
      <v-toolbar-title class="mr-4">
+    <b-col>
+         <img class="paw" src="@/assets/logo.png">
+    </b-col>
+    <b-col>
          <v-btn flat dark
          class="home"
          @click="navigateTo({name: 'root'})">
          Polar Prints
          </v-btn>
+    </b-col>
      </v-toolbar-title>
 
      <!-- Implement buttons
@@ -82,6 +87,17 @@ export default {
 .home {
     cursor: pointer; /* make a hand when hovering over a thing that is of class home */
     font-size: 20px;
+    color: black;
+    font-weight: bold;
+    margin-bottom: 5%;
+    right: 40%;
+}
+.paw {
+  margin-top: 40px;
+  height: 5%;
+  width: 5%;
+  right: 50%;
+  margin-left: -20px;
 }
 
 </style>

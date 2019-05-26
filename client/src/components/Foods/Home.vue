@@ -54,7 +54,7 @@ export default {
         if (response.data.length === 0) {
           this.error = 'no food found'
         } else {
-          this.$router.push('/foods/' + response.data[0].name)
+          this.$router.push('/foods/' + response.data[0].id)
         }
       } catch (error) {
         this.error = error.response.error

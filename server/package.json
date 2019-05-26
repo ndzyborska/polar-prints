@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/nodemon/bin/nodemon.js src/app.js --exec 'npm run lint && node'",
-    "lint": "eslint \"**/*.js\"",
+    "start": "nodemon src/app.js --exec \"npm run lint && node\"",
+    "lint": "./node_modules/.bin/eslint **/*.js",
     "seed": "node ./seed"
   },
   "keywords": [],
@@ -13,15 +13,15 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
-    "bluebird": "^3.5.4",
+    "bluebird": "^3.5.5",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
-    "express": "^4.17.0",
+    "express": "^4.17.1",
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.5.1",
     "morgan": "^1.9.1",
     "node": "^11.10.0",
-    "nodemon": "^1.19.0",
+    "nodemon": "^1.19.1",
     "sequelize": "^5.8.6",
     "sqlite3": "^4.0.8",
     "uniq": "^1.0.1"

@@ -1,27 +1,64 @@
 <template>
+
   <div class="home">
+     <v-btn
+        dark
+        class="cyan"
+        @click="navigateTo({name: 'newFood'})">
+        new
+        </v-btn>
         <img class = "paw" src="@/assets/logo.png">
-            <h1>{{ msg }}</h1>
+            <h1></h1>
     <h2>How is your food print today?</h2>
-<search/>
+        <v-text-field
+            label="Type the food here"
+            v-model="name"
+            single-line
+          ></v-text-field>
+           <br>
+    <div class="error" v-html="error" />
+    <br>
+           <v-btn
+            dark
+            class="cyan"
+            @click="search"
+            >Search
+           </v-btn>
+           <v-btn
+            dark
+            class="cyan"
+            >Add
+           </v-btn>
   </div>
 </template>
 
 <script>
-import Search from './Search'
+
+import FoodService from '@/services/FoodService'
 export default {
-  components: {
-    Search
-  },
   data () {
     return {
-      search: '',
-      msg: 'Polar Prints'
+      name: null,
+      error: null
     }
   },
   methods: {
     navigateTo (route) {
       this.$router.push(route)
+    },
+    async search () {
+      try {
+        const response = await FoodService.search({
+          name: this.name
+        })
+        if (response.data.length === 0) {
+          this.error = 'no food found'
+        } else {
+          this.$router.push('/foods/' + response.data[0].id)
+        }
+      } catch (error) {
+        this.error = error.response.error
+      }
     }
   }
 }

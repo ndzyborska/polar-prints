@@ -1,16 +1,12 @@
 <template>
  <v-toolbar fixed class="light-blue lighten-5" dark>
      <v-toolbar-title class="mr-4">
-    <b-col>
          <img class="paw" src="@/assets/logo.png">
-    </b-col>
-    <b-col>
          <v-btn flat dark
          class="home"
          @click="navigateTo({name: 'root'})">
          Polar Prints
          </v-btn>
-    </b-col>
      </v-toolbar-title>
 
      <!-- Implement buttons

@@ -4,7 +4,7 @@
          <img class="paw" src="@/assets/logo.png">
          <v-btn flat dark
          class="home"
-         @click="navigateTo({name: 'root'})">
+         @click="navigateTo({name: 'home'})">
          Polar Prints
          </v-btn>
      </v-toolbar-title>
@@ -19,7 +19,6 @@
 
  <v-toolbar-items>
          <v-btn
-         v-if="!$store.state.isUserLoggedIn"
          flat dark
            @click="navigateTo({name: 'foods'})">
            Foods
@@ -30,7 +29,7 @@
          <v-btn
          v-if="$store.state.isUserLoggedIn"
          flat dark
-           @click="logout">
+           @click="logout()">
            Logout
          </v-btn>
      </v-toolbar-items>
@@ -70,9 +69,7 @@ export default {
     logout () {
       this.$store.dispatch('setToken', null)
       this.$store.dispatch('setUser', null)
-      this.$router.push({
-        name: 'root'
-      })
+      this.$router.push('home')
     }
   }
 }

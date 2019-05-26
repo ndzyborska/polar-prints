@@ -52,6 +52,7 @@ export default {
   },
   methods: {
     async register () {
+      console.log('here')
       try {
         const response = await AuthenticationService.register({
           email: this.email,

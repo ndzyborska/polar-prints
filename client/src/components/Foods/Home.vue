@@ -30,12 +30,8 @@
            </v-btn>
            <v-btn
             dark
-<<<<<<< HEAD
             class="btn"
-=======
-            class="cyan"
             @click="add"
->>>>>>> 40f511a897d253242f516c7a21d6202a0c87c138
             >Add
            </v-btn>
            <v-btn

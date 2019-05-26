@@ -5,12 +5,11 @@
     <br><br><br><br><br>
  <v-container fluid fill-height>
   <v-layout align-center justify-center>
-  <v-flex xs-center sm8 md4>
+  <v-flex xs-center sm8 md5>
     <div class="elevation-12" style="opacity: 0.7;">
       <v-toolbar flat dense class="d" dark>
       <v-toolbar-title>Register</v-toolbar-title>
       </v-toolbar>
-
     <div class="pl-4 pr-4 pt-2 pb-2">
          <v-text-field
             label="Email"

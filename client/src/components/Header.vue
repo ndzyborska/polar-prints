@@ -1,10 +1,10 @@
 <template>
  <v-toolbar fixed class="light-blue lighten-5" dark>
      <v-toolbar-title class="mr-4">
-         <img class="paw" src="@/assets/logo.png">
          <v-btn flat dark
          class="home"
-         @click="navigateTo({name: 'home'})">
+         @click="navigateTo({name: 'foods'})">
+         <img class="paw" src="@/assets/logo.png">
          Polar Prints
          </v-btn>
      </v-toolbar-title>
@@ -17,18 +17,11 @@
      </v-toolbar-items> -->
     <v-spacer></v-spacer>
 
- <v-toolbar-items>
-         <v-btn
-         flat dark
-           @click="navigateTo({name: 'foods'})">
-           Foods
-         </v-btn>
-     </v-toolbar-items>
-
      <v-toolbar-items>
          <v-btn
          v-if="$store.state.isUserLoggedIn"
          flat dark
+         style="color: black;"
            @click="logout()">
            Logout
          </v-btn>
@@ -37,7 +30,8 @@
       <v-toolbar-items>
          <v-btn
          v-if="!$store.state.isUserLoggedIn"
-         flat dark
+         flat
+         style="color: black;"
            @click="navigateTo({name: 'login'})">
            Login
          </v-btn>
@@ -47,6 +41,7 @@
          <v-btn
          v-if="!$store.state.isUserLoggedIn"
          flat dark
+         style="color: black;"
          @click="navigateTo({name: 'register'})">
          Sign Up
         <!-- one way to do it:   <router-link to="register">
@@ -82,15 +77,13 @@ export default {
     font-size: 20px;
     color: black;
     font-weight: bold;
-    margin-bottom: 5%;
     right: 40%;
 }
 .paw {
-  margin-top: 40px;
-  height: 5%;
-  width: 5%;
-  right: 50%;
-  margin-left: -20px;
+  margin-left: 15px;
+  margin-right: 15px;
+  height: 3%;
+  width: 3%;
 }
 
 </style>

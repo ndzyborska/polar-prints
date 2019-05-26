@@ -434,10 +434,10 @@ export default {
 
 .blur {
 opacity: 0.5;
-bottom: 0%;
-top: 0%;
-height: 100%;
-width: 100%;
+top: 5%;
+position: absolute;
+height: 32%;
+width: 32%;
 }
 
 </style>

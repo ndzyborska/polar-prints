@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
 import Register from '@/components/Register'
 import Login from '@/components/Login'
 import Foods from '@/components/Foods/Home'
@@ -15,8 +14,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'root',
-      component: HelloWorld
+      name: 'foods',
+      component: Foods
     },
     {
       path: '/register',
@@ -27,11 +26,6 @@ export default new Router({
       path: '/login',
       name: 'login',
       component: Login
-    },
-    {
-      path: '/foods',
-      name: 'foods',
-      component: Foods
     },
     {
       path: '/foods/:foodId',

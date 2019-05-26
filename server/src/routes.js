@@ -1,6 +1,7 @@
 const AuthenticationController = require('./controllers/AuthenticationController')
 const AuthenticationControllerPolicy = require('./policies/AuthenticationControllerPolicy')
 const FoodController = require('./controllers/foodController')
+const LogController = require('./controllers/LogController')
 
 module.exports = (app) => {
     app.post('/register',
@@ -18,6 +19,9 @@ module.exports = (app) => {
 
     app.post('/newFood',
     FoodController.createNewFood)
+
+    app.post('/addLog',
+    LogController.addLog)
 
    app.get('/foods/:foodId',
    FoodController.getFoodDetails)

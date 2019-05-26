@@ -27,6 +27,7 @@
            <v-btn
             dark
             class="cyan"
+            @click="add"
             >Add
            </v-btn>
   </div>
@@ -35,11 +36,18 @@
 <script>
 
 import FoodService from '@/services/FoodService'
+import LogService from '@/services/LogService'
 export default {
   data () {
     return {
       name: null,
-      error: null
+      error: null,
+      userId: null
+    }
+  },
+  async mounted () {
+    if (this.$store.state.isUserLoggedIn) {
+      this.userId = this.$store.state.user.id
     }
   },
   methods: {
@@ -55,6 +63,28 @@ export default {
           this.error = 'no food found'
         } else {
           this.$router.push('/foods/' + response.data[0].id)
+        }
+      } catch (error) {
+        this.error = error.response.error
+      }
+    },
+    async add () {
+      try {
+        const response = await FoodService.search({
+          name: this.name
+        })
+        if (response.data.length === 0) {
+          this.error = 'no food found'
+        } else {
+          const foodId = response.data[0].id
+          try {
+            await LogService.addLog({
+              userId: this.userId,
+              foodId: foodId
+            })
+          } catch (error) {
+            this.error = error.response.data.error
+          }
         }
       } catch (error) {
         this.error = error.response.error

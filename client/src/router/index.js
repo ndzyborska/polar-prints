@@ -3,6 +3,9 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Register from '@/components/Register'
 import Login from '@/components/Login'
+import Foods from '@/components/Foods/Home'
+import New from '@/components/Foods/New'
+import FoodDetails from '@/components/Foods/FoodDetails'
 import Prints from '@/components/Prints'
 
 Vue.use(Router)
@@ -19,11 +22,25 @@ export default new Router({
       name: 'register',
       component: Register
     },
-
     {
       path: '/login',
       name: 'login',
       component: Login
+    },
+    {
+      path: '/foods',
+      name: 'foods',
+      component: Foods
+    },
+    {
+      path: '/foods/:foodId',
+      name: 'foodDetail',
+      component: FoodDetails
+    },
+    {
+      path: '/newFood',
+      name: 'newFood',
+      component: New
     },
     {
       path: '/prints',

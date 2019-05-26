@@ -4,6 +4,33 @@ const Op = Sequelize.Op
 
 
 module.exports = {
+
+    async getFoods(req, res) {
+      try {
+        const food = await Food.findAll({
+          limit: 10
+        })
+        res.send(food)
+      } catch (err) {
+        res.status(500).send({
+          error: 'Error finding foods'
+      })
+    }
+  },
+
+  async createNewFood (req, res) {   
+    try {
+ const food = await Food.create(req.body)
+res.send(food)
+    } catch (err) {
+       res.status(500).send({
+        error: 'Food of this name already exists'
+       })
+      }
+  },
+
+
+
     async food (req, res) {   
       try {
               const food = await Food.findAll({
@@ -26,15 +53,16 @@ module.exports = {
           try {
               let foods = null;
               foods = await Food.findAll({
+                  limit: 1,
                   where: {
                   name: {
-                      [Op.is]: req.params.name
+                      [Op.is]: req.body.name
                     }
                   }
                 })
           res.send(foods)     
           } catch (err) {
-              console.log(req.params.name)
+              console.log(req.body.name)
               console.log(err)
               res.status(500).send({
                   error: 'Error retriving foods'
@@ -42,8 +70,7 @@ module.exports = {
       }
      },
   
-  
-      async show (req, res) {
+      async getFoodDetails (req, res) {
           try {
             const food = await Food.findByPk(req.params.foodId)
             res.send(food)
@@ -53,18 +80,6 @@ module.exports = {
               error: 'Couldnt get Food'
             })
           }
-        },
-      
-      async post (req, res) {   
-          try {
-    const food = await Food.create(req.body)
-    res.send(food)
-          } catch (err) {
-            console.log(err)
-             res.status(500).send({
-              error: 'Error creating foods'
-             })
-            }
         }
       }
      

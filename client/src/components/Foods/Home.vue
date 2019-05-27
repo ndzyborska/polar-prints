@@ -66,11 +66,13 @@ export default {
     },
     async search () {
       try {
-        console.log('Here!')
+        var tempName = this.name
+        this.name = this.name.toLowerCase()
         const response = await FoodService.search({
           name: this.name
         })
         if (response.data.length === 0) {
+          this.name = tempName
           this.error = 'no food found'
         } else {
           this.$router.push('/food/' + response.data[0].id)
@@ -85,10 +87,13 @@ export default {
         return
       }
       try {
+        var tempName = this.name
+        this.name = this.name.toLowerCase()
         const response = await FoodService.search({
           name: this.name
         })
         if (response.data.length === 0) {
+          this.name = tempName
           this.error = 'no food found'
         } else {
           const foodId = response.data[0].id

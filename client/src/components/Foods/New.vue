@@ -46,7 +46,7 @@
        required
         :rules="[rules.required]"
      ></v-text-field>
-    <div class="error" v-html="error" />
+     <v-card class="error" v-html="error" />
     <br>
     </panel>
     <v-btn
@@ -56,6 +56,8 @@
         Enter
         </v-btn>
 </div>
+
+
 </template>
 
 <script>
@@ -89,6 +91,8 @@ export default {
         return
       }
       try {
+        var tempName = this.food.name
+        this.food.name = this.food.name.toLowerCase()
         const response = await FoodService.create({
           name: this.food.name,
           carbon: this.food.carbon,
@@ -98,9 +102,11 @@ export default {
           waterMessage: this.food.waterMessage,
           seasonMessage: this.food.seasonMessage
         })
-        this.$router.push({name: 'foods'})
+            this.$router.push({name: 'foods'})
       } catch (error) {
+        console.log()
         this.error = error.response.data.error
+        console.log(this.error)
       }
     }
   },
@@ -112,6 +118,7 @@ export default {
 
 <style scoped>
 .error {
-    color:red
+    color: black;
+    z-index: 4;
 }
 </style>

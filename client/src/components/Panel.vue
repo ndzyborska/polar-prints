@@ -1,4 +1,6 @@
 <template>
+<div>
+  <img class ="br" src="~@/assets/bb.png" alt="Photo">
   <div class="white elevation-2">
     <v-toolbar flat dense class="cyan" dark>
       <v-toolbar-title>{{title}}</v-toolbar-title>
@@ -9,6 +11,7 @@
         No slot content defined.
       </slot>
     </div>
+  </div>
   </div>
 </template>
 
@@ -21,4 +24,13 @@ export default {
 </script>
 
 <style scoped>
+.br {
+  min-height: 110%;
+  width: 110%;
+  height: auto;
+  position: absolute;
+  top: -15px;
+  right:-20px;
+  bottom: -20px;
+}
 </style>

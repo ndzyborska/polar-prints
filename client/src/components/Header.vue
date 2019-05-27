@@ -8,14 +8,17 @@
          Polar Prints
          </v-btn>
      </v-toolbar-title>
-
-     <!-- Implement buttons
-     <v-toolbar-items>
-       <v-btn flat dark>
-           Browse
-       </v-btn>
-     </v-toolbar-items> -->
     <v-spacer></v-spacer>
+
+    <v-toolbar-items>
+       <v-btn
+       v-if="$store.state.isUserLoggedIn"
+       flat
+       style="color: black;"
+         @click="navigateTo({name: 'log'})">
+         MyLog
+       </v-btn>
+   </v-toolbar-items>
 
      <v-toolbar-items>
          <v-btn

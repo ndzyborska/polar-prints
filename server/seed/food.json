@@ -1,20 +1,30 @@
 [
     {
-        "name": "Avocado",
-        "carbon": "alot",
-        "water": "also alot",
-        "ethics": "bad"
+        "name": "avocado",
+        "carbon": "7",
+        "water": "4",
+        "season": "summer",
+        "carbonMessage": "Shipped from South America",
+        "waterMessage": "requires moderate water flow",
+        "seasonMessage": "good in the summer"
+
     },
     {
         "name": "tomato",
-        "carbon": "alot",
-        "water": "also alot",
-        "ethics": "bad"
+        "carbon": "2",
+        "water": "1",
+        "season": "spring",
+        "carbonMessage": "globally grown",
+        "waterMessage": "good water flow",
+        "seasonMessage": "spring is good for tomatos"
     },
     {
         "name": "pea",
-        "carbon": "alot",
-        "water": "also alot",
-        "ethics": "bad"
+        "carbon": "6",
+        "water": "1",
+        "season": "all year",
+        "carbonMessage": "extensive farming",
+        "waterMessage": "good water use",
+        "seasonMessage": "durable vegetable"
     }
 ]

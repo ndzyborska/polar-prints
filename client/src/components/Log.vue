@@ -1,6 +1,7 @@
 <template>
   <v-flex xs6 offset-xs3>
 
+
     <panel title="log">
         <v-list three-line>
           <template v-for="foodInfo in foods">

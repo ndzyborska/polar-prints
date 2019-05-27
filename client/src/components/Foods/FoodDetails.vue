@@ -1,6 +1,12 @@
 <template>
   <div class="details">
   <h2 style="font-size:30px">{{food.name}}</h2>
+  <v-btn
+   dark
+   class="btn"
+   @click="add"
+   >Log!
+  </v-btn>
   <div class="infographic">
       <div class="row">
   <div class="column">
@@ -963,12 +969,14 @@
 
 <script>
 import FoodService from '@/services/FoodService'
+import LogService from '@/services/LogService'
 export default {
   data () {
     return {
       drop: false,
       paw: false,
       leaf: false,
+      userId: null,
       leafInfo: false,
       pawInfo: false,
       dropInfo: false,
@@ -976,17 +984,40 @@ export default {
       leafRec: 'leafRec',
       backClass: 'bk',
       blurClass: 'blur',
+      error: null,
+      name: null,
       images: 'images',
       enlarge: 'enlarge',
       food: {}
     }
   },
   async mounted () {
+    if (this.$store.state.isUserLoggedIn) {
+      this.userId = this.$store.state.user.id
+    }
     const id = this.$store.state.route.params.foodId
     this.food = (await FoodService.getFoodDetails(id)).data
     console.log(this.food)
+  },
+  methods: {
+  async add () {
+    if (this.userId === null) {
+      this.error = 'please log in'
+      return
+    }
+        try {
+          await LogService.addLog({
+            userId: this.userId,
+            foodId: id
+          })
+          this.$router.push({name: 'log'})
+        } catch (error) {
+          this.error = error.response.error
+        }
+    }
   }
 }
+
 </script>
 
 <style scoped>
@@ -1027,7 +1058,7 @@ export default {
  text-align: center;
  position: absolute;
  top: 50%;
- left: 20%;
+ left: 15%;
 }
 
 .infographic .column {

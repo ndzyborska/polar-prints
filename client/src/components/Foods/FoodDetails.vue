@@ -1,10 +1,12 @@
 <template>
+  <div class="details">
+  <h2 style="font-size:30px">{{food.name}}</h2>
   <div class="infographic">
       <div class="row">
   <div class="column">
-    <div  v-bind:class="[drop ? enlarge : '', images]">
+    <div  v-bind:class="[drop && !dropInfo ? enlarge : '', images]">
     <svg
-       xmlns:dc="http://purl.org/dc/elements/1.1/"
+       xmlns:dc="http://purl.org/dc/elem#ents/1.1/"
        xmlns:cc="http://creativecommons.org/ns#"
        xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
        xmlns:svg="http://www.w3.org/2000/svg"
@@ -57,6 +59,7 @@
          id="layer1">
         <g
            id="hover"
+           @click="dropInfo=true"
            style="cursor:pointer"
            @mouseover="drop = true" @mouseleave="drop = false"
            transform="matrix(0.26130649,0,0,0.26368837,43.191033,4.4411751)"
@@ -459,6 +462,8 @@
              inkscape:connector-curvature="0" />
         </g>
         <rect
+        @click="dropInfo=true"
+         v-bind:class="[dropInfo ? leafRec : '', leafy]"
         @mouseover="drop = true" @mouseleave="drop = false"
            style="cursor:pointer;fill:#0b1728;fill-opacity:1;stroke:#580000;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
            id="enlarge"
@@ -467,7 +472,16 @@
            x="25.577267"
            y="84.00399"
            inkscape:label="#rect3184" />
+           <text
+           x="85.492538"
+           y="7"
+           v-if="dropInfo"
+           style="font-size:5px;cursor:pointer;"
+            @click="dropInfo=false">X
+           </text>
         <text
+        v-if="!dropInfo"
+        @click="dropInfo=true"
         @mouseover="drop = true" @mouseleave="drop = false"
            xml:space="preserve"
            style="cursor:pointer;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:3.96925092px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.09923127"
@@ -487,9 +501,16 @@
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';text-align:center;text-anchor:middle;fill:#ffffff;stroke-width:0.09923127"
              id="tspan3190">Use</tspan></text>
       </g>
-    </svg> </div> </div>
+    </svg>
+    <div v-if="dropInfo" class="seasonStats">
+      <div class="infoBox">Water Scale: {{food.water}}</div>
+      <br>
+      <div class="infoBox">HELLO</div>
+      <br>
+      <div class="infoBox">Why: {{food.waterMessage}}</div>
+    </div> </div> </div>
     <div  class="column">
-      <div v-bind:class="[paw ? enlarge : '', images]">
+      <div v-bind:class="[paw && !pawInfo ? enlarge : '', images]">
     <svg
        xmlns:dc="http://purl.org/dc/elements/1.1/"
        xmlns:cc="http://creativecommons.org/ns#"
@@ -621,6 +642,7 @@
            inkscape:label="#path5123" />
         <g
            id="hover"
+           @click="pawInfo=true"
            style="cursor:pointer"
            @mouseover="paw = true" @mouseleave="paw = false"
            inkscape:label="#g3853"
@@ -700,6 +722,7 @@
                  style="fill:#00222b;fill-opacity:1;stroke:#0a0000;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0.86069647" />
             </g>
             <text
+            v-if="!pawInfo"
             @mouseover="paw = true" @mouseleave="paw = false"
                xml:space="preserve"
                style="cursor:pointer;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.11111069px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif Bold';letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -720,6 +743,16 @@
         </g>
       </g>
     </svg>
+
+      <div v-if="pawInfo">
+    <div class="seasonStats">
+      <div class="infoBox">Carbon rating: {{food.carbon}}</div>
+      <br>
+      <div class="infoBox">HELLO</div>
+      <br>
+      <div class="infoBox">Message: {{food.carbonMessage}}</div>
+    </div>
+    </div>
     </div>
     </div>
     <div class="column"><div  v-bind:class="[leaf && !leafInfo ? enlarge : '', images]">
@@ -786,6 +819,7 @@
          @mouseover="leaf = true" @mouseleave="leaf = false"
          @click="leafInfo=true"
          style="cursor:pointer"
+         class="hover"
            id="hover"
            inkscape:label="#g3872"
            transform="matrix(0.50352076,0,0,0.48371074,97.425427,-166.13309)">
@@ -888,7 +922,6 @@
            x="36.097221"
            y="63.69455"
            inkscape:label="#rect3829" />
-           <div>Hello</div>
            <text
            x="95.492538"
            y="-16"
@@ -915,12 +948,17 @@
       </g>
     </svg>
     <div v-if="leafInfo" class="seasonStats">
-      <div class="infoBox">{{food.ethics}}</div>
+      <div class="infoBox">Season of food: {{food.season}}</div>
+      <br>
+      <div class="infoBox">HELLO</div>
+      <br>
+      <div class="infoBox">Message: {{food.seasonMessage}}</div>
     </div>
     </div>
   </div>
 </div>
   </div>
+</div>
   </template>
 
 <script>
@@ -932,6 +970,8 @@ export default {
       paw: false,
       leaf: false,
       leafInfo: false,
+      pawInfo: false,
+      dropInfo: false,
       leafy: 'leafy',
       leafRec: 'leafRec',
       backClass: 'bk',
@@ -953,56 +993,49 @@ export default {
 .error {
     color:red
 }
+
 .infographic{
   position: absolute;
   margin: auto;
   display: block;
-  padding-left: 50px;
-  margin-top: 0%;
   border: solid 6px black;
   height: 600px;
+  padding: 10px;
   width: auto;
 }
 
 .images {
   opacity: 1;
   position: relative;
-width: 100%;
+  display: block;
+  width: auto;
+  height: 600px;
   transition: all 1s ease-out;
 }
 
-.seasonStats .infoBox {
+ .infoBox {
   background-color: white;
-  position: absolute;
-  width: 80%;
+  width: 90%;
   opacity: 0.8;
 }
 
-.images .leafsvg {
- display: block;
-}
-/* Original text overlay */
-.images .seasonStats {
+.seasonStats {
  color: black;
  font-size: 20px;
  font-weight: bold;
  line-height: 1.5em;
- text-shadow: 2px 2px 2px #000;
  text-align: center;
  position: absolute;
- bottom: 50%;
- padding: 5px 35px;
- transform: translate(-195px, -450px);
- left: 50%;
- width: 100%;
+ top: 50%;
+ left: 20%;
 }
 
-.column {
+.infographic .column {
   float: left;
   width: 33.3%;
-  padding: 5px;
-  transition: all 1s ease-out;
+  display: block;
 }
+
 .row::after {
   content: "";
   clear: both;
@@ -1015,12 +1048,22 @@ width: 100%;
   transition: all 3s ease-out;
 }
 
-.leafRec {
+.images .leafRec {
   cursor: default;
-  height: 168px;
-  width: 115px;
+  height: 56%;
+  width: 55%;
   opacity: 0.5;
   transform: translate(-50px,-100px);
+}
+
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+
+.pawRec {
+  cursor: default;
+  height: 56%;
+  width: 55%;
 }
 
 .enlarge {

@@ -512,9 +512,7 @@
     <div v-if="dropInfo" class="seasonStats">
       <div class="infoBox">Water Scale: {{food.water}}</div>
       <br>
-      <div class="infoBox">HELLO</div>
-      <br>
-      <div class="infoBox">Why: {{food.waterMessage}}</div>
+      <div class="infoBox">{{food.waterMessage}}</div>
     </div> </div> </div>
     <div  class="column">
       <div v-bind:class="[paw && !pawInfo ? enlarge : '', images]">
@@ -755,9 +753,7 @@
     <div class="seasonStats">
       <div class="infoBox">Carbon rating: {{food.carbon}}</div>
       <br>
-      <div class="infoBox">HELLO</div>
-      <br>
-      <div class="infoBox">Message: {{food.carbonMessage}}</div>
+      <div class="infoBox">{{food.carbonMessage}}</div>
     </div>
     </div>
     </div>
@@ -957,9 +953,7 @@
     <div v-if="leafInfo" class="seasonStats">
       <div class="infoBox">Season of food: {{food.season}}</div>
       <br>
-      <div class="infoBox">HELLO</div>
-      <br>
-      <div class="infoBox">Message: {{food.seasonMessage}}</div>
+      <div class="infoBox">{{food.seasonMessage}}</div>
     </div>
     </div>
   </div>
@@ -1002,8 +996,6 @@ export default {
   },
   methods: {
     async add () {
-      console.log(this.userId)
-      console.log(this.foodId)
       try {
         await LogService.addLog({
           userId: this.userId,

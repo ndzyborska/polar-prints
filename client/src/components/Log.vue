@@ -10,7 +10,7 @@
               <v-list-tile-title class="foodInfo">Food: {{foodInfo.food.name}} times {{foodInfo.count}} </v-list-tile-title>
               <v-list-tile-sub-title class="foodInfo">carbon rating: {{foodInfo.food.carbon}}</v-list-tile-sub-title>
                 <v-list-tile-sub-title class="foodInfo">water rating: {{foodInfo.food.water}}</v-list-tile-sub-title>
-                <v-list-tile-sub-title class="foodInfo"> {season: {{foodInfo.food.season}}</v-list-tile-sub-title>
+                <v-list-tile-sub-title class="foodInfo">season: {{foodInfo.food.season}}</v-list-tile-sub-title>
             </v-list-tile-content>
                 </v-list-tile>
           </template>
@@ -102,12 +102,12 @@ export default {
     async getAverages () {
       console.log(this.foods[0].food.carbon)
       for (var i = 0; i < this.foods.length; i++) {
-        this.averages.carbonAverage =  Number(this.averages.carbonAverage) + (Number(this.foods[i].food.carbon) * this.foods[i].count)
-        this.averages.waterAverage =  Number(this.averages.waterAverage) + (Number(this.foods[i].food.water) * this.foods[i].count)
+        this.averages.carbonAverage = Number(this.averages.carbonAverage) + (Number(this.foods[i].food.carbon) * this.foods[i].count)
+        this.averages.waterAverage = Number(this.averages.waterAverage) + (Number(this.foods[i].food.water) * this.foods[i].count)
+      }
+      this.averages.carbonAverage = Number(this.averages.carbonAverage) / Number(this.logData.data.length)
+      this.averages.waterAverage = Number(this.averages.waterAverage) / Number(this.logData.data.length)
     }
-    this.averages.carbonAverage = Number(this.averages.carbonAverage) / Number(this.logData.data.length)
-    this.averages.waterAverage =  Number(this.averages.waterAverage) / Number(this.logData.data.length)
-  }
   },
   components: {
     Panel

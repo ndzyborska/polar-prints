@@ -102,7 +102,6 @@ export default {
       } catch (error) {
         this.food.name = tempName
         this.error = error.response.data.error
-        console.log(this.error)
       }
     }
   },

@@ -62,6 +62,9 @@ export default {
       } catch (error) {
         this.error = error.response.data.error
       }
+      if (this.$store.state.isUserLoggedIn) {
+        this.$router.push({name: 'foods'})
+      }
     }
   }
 }

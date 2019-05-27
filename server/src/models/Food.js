@@ -5,10 +5,12 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         unique: true
     },
-    carbon: DataTypes.STRING,
-    water: DataTypes.STRING,
-    ethics: DataTypes.STRING,
+    carbon: DataTypes.INTEGER,
+    water: DataTypes.INTEGER,
+    season: DataTypes.STRING,
+    carbonMessage: DataTypes.TEXT,
+    waterMessage: DataTypes.TEXT,
+    seasonMessage: DataTypes.TEXT
   })
  return Food
 }
-

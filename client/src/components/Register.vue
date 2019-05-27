@@ -51,7 +51,6 @@ export default {
   },
   methods: {
     async register () {
-      console.log('here')
       try {
         const response = await AuthenticationService.register({
           email: this.email,
@@ -61,6 +60,9 @@ export default {
         this.$store.dispatch('setUser', response.data.user)
       } catch (error) {
         this.error = error.response.data.error
+      }
+      if (this.$store.state.isUserLoggedIn) {
+        this.$router.push({name: 'foods'})
       }
     }
   }

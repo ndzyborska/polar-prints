@@ -20,11 +20,32 @@
            :rules="[rules.required]"
         ></v-text-field>
          <v-text-field
-          label="Ethics"
-          v-model="food.ethics"
+          label="season"
+          v-model="food.season"
           required
            :rules="[rules.required]"
         ></v-text-field>
+        <v-text-field
+         label="Carbon Information"
+         multi-line
+         v-model="food.carbonMessage"
+         required
+          :rules="[rules.required]"
+       ></v-text-field>
+       <v-text-field
+        label="Water Information"
+        multi-line
+        v-model="food.waterMessage"
+        required
+         :rules="[rules.required]"
+      ></v-text-field>
+      <v-text-field
+       label="Seasonal Information"
+       multi-line
+       v-model="food.seasonMessage"
+       required
+        :rules="[rules.required]"
+     ></v-text-field>
     <div class="error" v-html="error" />
     <br>
     </panel>
@@ -47,7 +68,10 @@ export default {
         name: '',
         carbon: '',
         water: '',
-        ethics: ''
+        season: '',
+        carbonMessage: '',
+        waterMessage: '',
+        seasonMessage: ''
       },
       error: null,
       rules: {
@@ -65,12 +89,16 @@ export default {
         return
       }
       try {
-        await FoodService.create({
+        const response = await FoodService.create({
           name: this.food.name,
           carbon: this.food.carbon,
           water: this.food.water,
-          ethics: this.food.ethics
+          season: this.food.season,
+          carbonMessage: this.food.carbonMessage,
+          waterMessage: this.food.waterMessage,
+          seasonMessage: this.food.seasonMessage
         })
+        this.$router.push({name: 'foods'})
       } catch (error) {
         this.error = error.response.data.error
       }

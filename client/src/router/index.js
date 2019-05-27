@@ -28,7 +28,7 @@ export default new Router({
       component: Login
     },
     {
-      path: '/foods/:foodId',
+      path: '/food/:foodId',
       name: 'foodDetail',
       component: FoodDetails
     },

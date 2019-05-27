@@ -1,4 +1,4 @@
-const {Food} = require('../models') 
+const {Food} = require('../models')
 const Sequelize = require('sequelize')
 const Op = Sequelize.Op
 
@@ -18,10 +18,10 @@ module.exports = {
     }
   },
 
-  async createNewFood (req, res) {   
+  async createNewFood (req, res) {
     try {
- const food = await Food.create(req.body)
-res.send(food)
+      const food = await Food.create(req.body)
+      res.send({status: true})
     } catch (err) {
        res.status(500).send({
         error: 'Food of this name already exists'
@@ -31,13 +31,13 @@ res.send(food)
 
 
 
-    async food (req, res) {   
+    async food (req, res) {
       try {
               const food = await Food.findAll({
                   where: {
                     name: {
                     [Op.like]: `%${req.body.name}%`
-                      }  
+                      }
                   }
               })
         res.send(food)
@@ -48,7 +48,7 @@ res.send(food)
          })
         }
     },
-  
+
       async search (req, res) {
           try {
               let foods = null;
@@ -60,7 +60,7 @@ res.send(food)
                     }
                   }
                 })
-          res.send(foods)     
+          res.send(foods)
           } catch (err) {
               console.log(req.body.name)
               console.log(err)
@@ -69,7 +69,7 @@ res.send(food)
                  })
       }
      },
-  
+
       async getFoodDetails (req, res) {
           try {
             const food = await Food.findByPk(req.params.foodId)
@@ -82,4 +82,3 @@ res.send(food)
           }
         }
       }
-     

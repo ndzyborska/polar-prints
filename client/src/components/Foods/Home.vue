@@ -72,13 +72,17 @@ export default {
         if (response.data.length === 0) {
           this.error = 'no food found'
         } else {
-          this.$router.push('/foods/' + response.data[0].id)
+          this.$router.push('/food/' + response.data[0].id)
         }
       } catch (error) {
         this.error = error.response.error
       }
     },
     async add () {
+      if (this.userId === null) {
+        this.error = 'please log in'
+        return
+      }
       try {
         const response = await FoodService.search({
           name: this.name
@@ -93,7 +97,7 @@ export default {
               foodId: foodId
             })
           } catch (error) {
-            this.error = error.response.data.error
+            this.error = error.response.error
           }
         }
       } catch (error) {

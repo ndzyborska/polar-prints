@@ -10,14 +10,14 @@
               <v-list-tile-title class="foodInfo">Food: {{foodInfo.food.name}} times {{foodInfo.count}} </v-list-tile-title>
               <v-list-tile-sub-title class="foodInfo">carbon rating: {{foodInfo.food.carbon}}</v-list-tile-sub-title>
                 <v-list-tile-sub-title class="foodInfo">water rating: {{foodInfo.food.water}}</v-list-tile-sub-title>
-                <v-list-tile-sub-title class="foodInfo"> {season: {foodInfo.food.season}}</v-list-tile-sub-title>
+                <v-list-tile-sub-title class="foodInfo"> {season: {{foodInfo.food.season}}</v-list-tile-sub-title>
             </v-list-tile-content>
                 </v-list-tile>
           </template>
         </v-list>
-        <p>Average carbon rating: {{averages.carbonAverage}}</p>
-        <p>Average water rating: {{averages.waterAverage}}</p>
-        <div class="error" v-html="error" />
+         <v-card>Average carbon rating: {{averages.carbonAverage}}</v-card>
+        <v-card>Average water rating: {{averages.waterAverage}} </v-card>
+         <v-card class="error" v-html="error" />
         <v-btn
             dark
             class="cyan"

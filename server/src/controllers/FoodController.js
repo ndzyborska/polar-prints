@@ -29,26 +29,6 @@ module.exports = {
       }
   },
 
-
-
-    async food (req, res) {
-      try {
-              const food = await Food.findAll({
-                  where: {
-                    name: {
-                    [Op.like]: `%${req.body.name}%`
-                      }
-                  }
-              })
-        res.send(food)
-      } catch (err) {
-          console.log(err)
-         res.status(500).send({
-          error: 'Error retriving foods'
-         })
-        }
-    },
-
       async search (req, res) {
           try {
               let foods = null;

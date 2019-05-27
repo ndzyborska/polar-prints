@@ -1,6 +1,13 @@
 <template>
   <div class="details">
   <h2 style="font-size:30px">{{food.name}}</h2>
+  <v-btn
+   v-if="$store.state.isUserLoggedIn"
+   dark
+   class="btn"
+   @click="add"
+   >Add
+  </v-btn>
   <div class="infographic">
       <div class="row">
   <div class="column">
@@ -963,6 +970,7 @@
 
 <script>
 import FoodService from '@/services/FoodService'
+import LogService from '@/services/LogService'
 export default {
   data () {
     return {
@@ -978,14 +986,35 @@ export default {
       blurClass: 'blur',
       images: 'images',
       enlarge: 'enlarge',
-      food: {}
+      food: {},
+      userId: null,
+      foodId: null
     }
   },
   async mounted () {
-    const id = this.$store.state.route.params.foodId
-    this.food = (await FoodService.getFoodDetails(id)).data
-    console.log(this.food)
-  }
+    if (this.$store.state.isUserLoggedIn) {
+      this.userId = this.$store.state.user.id
+    }
+    this.foodId = this.$store.state.route.params.foodId
+    this.food = (await FoodService.getFoodDetails(this.foodId)).data
+  },
+  methods: {
+    async add () {
+      console.log(this.userId)
+      console.log(this.foodId)
+        try {
+          await LogService.addLog({
+              userId: this.userId,
+              foodId: this.foodId
+            })
+            this.$router.push({name: "log"})
+          } catch (error) {
+            console.log('hereeeee')
+            console.log(error)
+            this.error = error.response.error
+          }
+        }
+    }
 }
 </script>
 

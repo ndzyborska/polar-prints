@@ -72,7 +72,7 @@ export default {
 
 <style scoped>
 .error {
-  color: red;
+  color: black;
 }
 .br {
   min-height: 110%;

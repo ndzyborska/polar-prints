@@ -25,27 +25,24 @@
           required
            :rules="[rules.required]"
         ></v-text-field>
-        <v-text-field
+        <v-textarea
          label="Carbon Information"
-         multi-line
          v-model="food.carbonMessage"
          required
           :rules="[rules.required]"
-       ></v-text-field>
-       <v-text-field
+       ></v-textarea>
+       <v-textarea
         label="Water Information"
-        multi-line
         v-model="food.waterMessage"
         required
          :rules="[rules.required]"
-      ></v-text-field>
-      <v-text-field
+      ></v-textarea>
+      <v-textarea
        label="Seasonal Information"
-       multi-line
        v-model="food.seasonMessage"
        required
         :rules="[rules.required]"
-     ></v-text-field>
+     ></v-textarea>
      <v-card class="error" v-html="error" />
     <br>
     </panel>
@@ -93,6 +90,7 @@ export default {
       try {
         var tempName = this.food.name
         this.food.name = this.food.name.toLowerCase()
+        console.log(this.food.name)
         const response = await FoodService.create({
           name: this.food.name,
           carbon: this.food.carbon,
@@ -102,9 +100,9 @@ export default {
           waterMessage: this.food.waterMessage,
           seasonMessage: this.food.seasonMessage
         })
-            this.$router.push({name: 'foods'})
+        this.$router.push({name: 'foods'})
       } catch (error) {
-        console.log()
+        this.food.name = tempName
         this.error = error.response.data.error
         console.log(this.error)
       }

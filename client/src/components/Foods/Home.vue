@@ -29,12 +29,6 @@
             >Search
            </v-btn>
            <v-btn
-            dark
-            class="btn"
-            @click="add"
-            >Add
-           </v-btn>
-           <v-btn
               dark
               class="btn"
               @click="navigateTo({name: 'newFood'})">
@@ -80,37 +74,8 @@ export default {
       } catch (error) {
         this.error = error.response.error
       }
-    },
-    async add () {
-      if (this.userId === null) {
-        this.error = 'please log in'
-        return
-      }
-      try {
-        var tempName = this.name
-        this.name = this.name.toLowerCase()
-        const response = await FoodService.search({
-          name: this.name
-        })
-        if (response.data.length === 0) {
-          this.name = tempName
-          this.error = 'no food found'
-        } else {
-          const foodId = response.data[0].id
-          try {
-            await LogService.addLog({
-              userId: this.userId,
-              foodId: foodId
-            })
-          } catch (error) {
-            this.error = error.response.error
-          }
-        }
-      } catch (error) {
-        this.error = error.response.error
-      }
     }
-  }
+}
 }
 </script>
 

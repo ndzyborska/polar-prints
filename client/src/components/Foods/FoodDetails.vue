@@ -2,11 +2,18 @@
   <div class="details">
   <h2 style="font-size:30px">{{food.name}}</h2>
   <v-btn
+<<<<<<< HEAD
    v-if="$store.state.isUserLoggedIn"
    dark
    class="btn"
    @click="add"
    >Add
+=======
+   dark
+   class="btn"
+   @click="add"
+   >Log!
+>>>>>>> a8c9a47ad360b32f4b2d780b5499ffc4d116688a
   </v-btn>
   <div class="infographic">
       <div class="row">
@@ -977,6 +984,7 @@ export default {
       drop: false,
       paw: false,
       leaf: false,
+      userId: null,
       leafInfo: false,
       pawInfo: false,
       dropInfo: false,
@@ -984,6 +992,8 @@ export default {
       leafRec: 'leafRec',
       backClass: 'bk',
       blurClass: 'blur',
+      error: null,
+      name: null,
       images: 'images',
       enlarge: 'enlarge',
       food: {},
@@ -995,6 +1005,7 @@ export default {
     if (this.$store.state.isUserLoggedIn) {
       this.userId = this.$store.state.user.id
     }
+<<<<<<< HEAD
     this.foodId = this.$store.state.route.params.foodId
     this.food = (await FoodService.getFoodDetails(this.foodId)).data
   },
@@ -1015,7 +1026,31 @@ export default {
           }
         }
     }
+=======
+    const id = this.$store.state.route.params.foodId
+    this.food = (await FoodService.getFoodDetails(id)).data
+    console.log(this.food)
+  },
+  methods: {
+  async add () {
+    if (this.userId === null) {
+      this.error = 'please log in'
+      return
+    }
+        try {
+          await LogService.addLog({
+            userId: this.userId,
+            foodId: id
+          })
+          this.$router.push({name: 'log'})
+        } catch (error) {
+          this.error = error.response.error
+        }
+    }
+  }
+>>>>>>> a8c9a47ad360b32f4b2d780b5499ffc4d116688a
 }
+
 </script>
 
 <style scoped>
@@ -1056,7 +1091,7 @@ export default {
  text-align: center;
  position: absolute;
  top: 50%;
- left: 20%;
+ left: 15%;
 }
 
 .infographic .column {

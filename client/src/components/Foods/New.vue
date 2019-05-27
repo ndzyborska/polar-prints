@@ -54,7 +54,6 @@
         </v-btn>
 </div>
 
-
 </template>
 
 <script>
@@ -90,8 +89,7 @@ export default {
       try {
         var tempName = this.food.name
         this.food.name = this.food.name.toLowerCase()
-        console.log(this.food.name)
-        const response = await FoodService.create({
+        await FoodService.create({
           name: this.food.name,
           carbon: this.food.carbon,
           water: this.food.water,

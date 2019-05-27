@@ -7,7 +7,6 @@ import New from '@/components/Foods/New'
 import Log from '@/components/Log'
 import FoodDetails from '@/components/Foods/FoodDetails'
 import NotFound from '@/components/NotFound'
-import Prints from '@/components/Prints'
 
 Vue.use(Router)
 
@@ -42,11 +41,6 @@ export default new Router({
       path: '/log',
       name: 'log',
       component: Log
-    },
-    {
-      path: '/prints',
-      name: 'prints',
-      component: Prints
     },
     {
       path: '/notFound',

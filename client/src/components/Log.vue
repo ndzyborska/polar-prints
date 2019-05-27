@@ -1,7 +1,6 @@
 <template>
   <v-flex xs6 offset-xs3>
 
-
     <panel title="log">
         <v-list three-line>
           <template v-for="foodInfo in foods">
@@ -9,9 +8,9 @@
             v-bind:key="foodInfo.food.name">
               <v-list-tile-content>
               <v-list-tile-title class="foodInfo">Food: {{foodInfo.food.name}} times {{foodInfo.count}} </v-list-tile-title>
-              <v-list-tile-sub-title class="foodInfo">Carbon rating: {{foodInfo.food.carbon}}</v-list-tile-sub-title>
-                <v-list-tile-sub-title class="foodInfo">Water rating: {{foodInfo.food.water}}</v-list-tile-sub-title>
-                <v-list-tile-sub-title class="foodInfo">Season: {{foodInfo.food.season}}</v-list-tile-sub-title>
+              <v-list-tile-sub-title class="foodInfo">carbon rating: {{foodInfo.food.carbon}}</v-list-tile-sub-title>
+                <v-list-tile-sub-title class="foodInfo">water rating: {{foodInfo.food.water}}</v-list-tile-sub-title>
+                <v-list-tile-sub-title class="foodInfo"> {season: {{foodInfo.food.season}}</v-list-tile-sub-title>
             </v-list-tile-content>
                 </v-list-tile>
           </template>
@@ -21,7 +20,7 @@
          <v-card class="error" v-html="error" />
         <v-btn
             dark
-            class="d"
+            class="cyan"
             @click="clear">
             clear
             </v-btn>
@@ -47,7 +46,6 @@ export default {
       }
     }
   },
-
   async mounted () {
     if (!this.$store.state.isUserLoggedIn) {
       this.$router.push({name: 'foods'})
@@ -115,23 +113,16 @@ export default {
     Panel
   }
 }
-
 </script>
 
 <style scoped>
 .error {
     color:red
 }
-
-.d {
-  background-color: #005084;
-}
-
 .foodInfo {
   color: red;
   text-align: center;
 }
-
 .listInfo {
   text-align: center;
 }

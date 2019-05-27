@@ -977,7 +977,6 @@ export default {
       drop: false,
       paw: false,
       leaf: false,
-      userId: null,
       leafInfo: false,
       pawInfo: false,
       dropInfo: false,
@@ -1005,19 +1004,17 @@ export default {
     async add () {
       console.log(this.userId)
       console.log(this.foodId)
-        try {
-          await LogService.addLog({
-              userId: this.userId,
-              foodId: this.foodId
-            })
-            this.$router.push({name: "log"})
-          } catch (error) {
-            console.log('hereeeee')
-            console.log(error)
-            this.error = error.response.error
-          }
-        }
+      try {
+        await LogService.addLog({
+          userId: this.userId,
+          foodId: this.foodId
+        })
+        this.$router.push({name: 'log'})
+      } catch (error) {
+        this.error = error.response.error
+      }
     }
+  }
 }
 
 </script>

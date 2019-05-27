@@ -40,7 +40,6 @@
 <script>
 
 import FoodService from '@/services/FoodService'
-import LogService from '@/services/LogService'
 export default {
   data () {
     return {
@@ -75,7 +74,7 @@ export default {
         this.error = error.response.error
       }
     }
-}
+  }
 }
 </script>
 
